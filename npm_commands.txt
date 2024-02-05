@@ -1,0 +1,14 @@
+npm init -y
+
+npm install express
+
+npm install --save-dev nodemon
+Change to ("start": "nodemon app.js") in scripts, package.json
+
+npm install ejs
+
+npm install mongodb
+
+npm install bcryptjs
+
+npm install express-session connect-mongodb-session
