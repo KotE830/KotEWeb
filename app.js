@@ -4,6 +4,7 @@ const express = require("express");
 const expressSession = require("express-session");
 
 const baseRoutes = require("./routes/base.routes");
+const authRoutes = require("./routes/auth.routes");
 
 const app = express();
 
@@ -14,5 +15,6 @@ app.use(express.static("public"));
 app.use(express.urlencoded({ extended: false }));
 
 app.use(baseRoutes);
+app.use(authRoutes);
 
 app.listen(8000);
