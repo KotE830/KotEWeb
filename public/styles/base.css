@@ -6,8 +6,18 @@ html {
   font-family: "Rubik", "sans-sarif";
 
   --color-background: rgb(138, 144, 185);
-
+  --color-background-header: rgb(138, 138, 138);
+  --color-background-border: rgb(212, 136, 14);
   --color-text: rgb(36, 32, 14);
+  --color-border-button: rgb(0, 0, 0);
+
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-4: 1rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+
+  --border-radius: 4px;
 }
 
 body {
