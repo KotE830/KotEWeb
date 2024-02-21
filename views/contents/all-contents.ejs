@@ -1,0 +1,23 @@
+<%- include("../shared/includes/head", { pageTitle: "All Contents"}) %>
+<link rel="stylesheet" href="/styles/contents.css">
+</head>
+<body>
+  <%- include("../shared/includes/header") %>
+  <main>
+    <h1>All Contents</h1>
+    <section>
+      <% if (true) { %>
+        <p><a href="/contents/new">Add Content</a></p>
+      <% } %>
+    </section>
+    <section>
+      <ul>
+        <% for (const content of contents) { %>
+          <li>
+            <%- includes("includes/content-item", { content: content }) %>
+          </li>
+        <% } %>
+      </ul>
+    </section>
+  </main>
+  <%- include("../shared/includes/footer") %>

@@ -6,6 +6,8 @@ const expressSession = require("express-session");
 const createSessionConfig = require("./config/session");
 const baseRoutes = require("./routes/base.routes");
 const authRoutes = require("./routes/auth.routes");
+const contentsRoutes = require("./routes/contents.routes");
+const objectsRoutes = require("./routes/objects.routes");
 
 const app = express();
 
@@ -21,5 +23,7 @@ app.use(expressSession(sessionConfig));
 
 app.use(baseRoutes);
 app.use(authRoutes);
+app.use("/contents", contentsRoutes);
+app.use(objectsRoutes);
 
 app.listen(8000);
