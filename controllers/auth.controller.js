@@ -151,10 +151,24 @@ function logout(req, res) {
   res.redirect("/");
 }
 
+async function signout(req, res, next) {
+  let user;
+  try {
+    user = await User.findById(req.session.uid);
+    await user.remove();
+  } catch (error) {
+    return next(error);
+  }
+  
+  authUtil.destroyUserAuthSession(req);
+  res.redirect("/");
+}
+
 module.exports = {
   getSignup: getSignup,
   signup: signup,
   getLogin: getLogin,
   login: login,
-  logout: logout
+  logout: logout,
+  signout: signout
 };

@@ -13,10 +13,18 @@ class User {
   static async findById(userId) {
     const uid = new mongodb.ObjectId(userId);
 
-    return db
+    const user = await db
       .getDb()
       .collection("users")
       .findOne({ _id: uid }, { projection: { password: 0 } });
+
+    if (!user) {
+      const error = new Error("Could not find user with provided id.");
+      error.code = 404;
+      throw error;
+    }
+
+    return new User(user.email, user.password, user.nickname);
   }
 
   async nicknameExistsAlready() {
@@ -54,6 +62,11 @@ class User {
 
   hasMatchingPassword(hashedPassword) {
     return bcrypt.compare(this.password, hashedPassword);
+  }
+
+  remove() {
+    const nickname = this.nickname;
+    return db.getDb().collection("users").deleteOne({ "nickname": nickname });
   }
 }
 
