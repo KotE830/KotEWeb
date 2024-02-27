@@ -12,26 +12,25 @@
       </section>
     <% } %>
     <form action="/signup" method="POST">
+      <input type="hidden" name="_csrf" value="<%= locals.csrfToken %>">
+      <p>
+        <label for="nickname">Nickname</label>
+        <input type="text" name="nickname" id="nickname" value="<%= inputData.nickname %>" required>
+      </p>
       <p>
         <label for="email">E-Mail</label>
-        <input type="email" name="email" id="email" required>
-        <button>Confirm</button>
+        <input type="email" name="email" id="email" value="<%= inputData.email%>" required>
         <section class="alert">
           <p>Email already exists</p>
         </section>
       </p>
       <p>
         <label for="password">password</label>
-        <input type="password" name="password" id="password" minlength="8" required>
+        <input type="password" name="password" id="password" minlength="8" value="<%= inputData.password %>" required>
       </p>
       <p>
         <label for="confirm-password">Confirm password</label>
-        <input type="password" name="confirm-password" id="confirm-password" minlength="8" required>
-      </p>
-      <p>
-        <label for="nickname">Nickname</label>
-        <input type="text" name="nickname" id="nickname" required>
-        <button>Confirm</button>
+        <input type="password" name="confirm-password" id="confirm-password" minlength="8" value="<%= inputData.password %>" required>
       </p>
       <button class="btn">Create Account</button>
     </form>
