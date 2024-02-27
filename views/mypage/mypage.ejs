@@ -1,0 +1,13 @@
+<%- include("../shared/includes/head", { pageTitle: "My page"}) %>
+</head>
+<body>
+  <%- include("../shared/includes/header") %>
+  <main>
+    <h1><%= user.nickname %></h1>
+    <li>
+      <form action="/signout" method="POST">
+        <button class="btn">Sign out</button>
+      </form>
+    </li>
+  </main>
+  <%- include("../shared/includes/footer") %>
