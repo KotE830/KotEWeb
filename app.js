@@ -27,6 +27,7 @@ app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
 
 app.use(express.static("public"));
+app.use("/images/assets", express.static("images"));
 app.use(express.urlencoded({ extended: false }));
 
 const sessionConfig = createSessionConfig();

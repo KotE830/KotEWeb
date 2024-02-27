@@ -48,6 +48,16 @@ main {
   padding: var(--space-2) var(--space-4);
 }
 
+#profile a {
+  display: flex;
+}
+
+#profile img {
+  width: 100%;
+  height: 1rem;
+  margin: auto 0;
+}
+
 @media (min-width: 48rem) {
   #main-header {
     position: static;

@@ -7,7 +7,12 @@
   <% } %>
 
   <% if (locals.isAuth) { %>
-    <li><a href="<%= locals.username %>"><%= locals.username %></a></li>
+    <li id="profile">
+      <a href="<%= locals.username %>">
+        <img src="/images/assets/person/base-person.png" alt="<%= locals.username %> profile" />
+        <p><%= locals.username %></p>
+      </a>
+    </li>
     <li>
       <form action="/logout" method="POST">
         <button>Logout</button>
