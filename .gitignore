@@ -1,2 +1,7 @@
+# heroku
+/node_modules
+npm-debug.log
+.DS_Store
+/*.env
+
 note.txt
-node_modules
