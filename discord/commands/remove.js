@@ -19,7 +19,7 @@ module.exports = {
 
     if (isNaN(args)) {
       embed.setDescription("Please enter a number");
-    } else if (Number(args) >= guildQueue.length) {
+    } else if (Number(args) > guildQueue.length) {
       embed.setDescription("Out of range of queue");
     } else {
       const removeSong = guildQueue.tracks.data[Number(args) - 1];
@@ -28,7 +28,7 @@ module.exports = {
       embed
         .setDescription(`Skipped **${removeSong.title}**`)
         .setThumbnail(removeSong.thumbnail)
-        .setFooter({ text: `Duration: ${song.duration}` });
+        .setFooter({ text: `Duration: ${removeSong.duration}` });
     }
 
     await message.reply({

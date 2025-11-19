@@ -1,0 +1,41 @@
+npx create-react-app koteweb
+
+npm install discord.js
+
+npm install dotenv
+
+# Nodejs server
+npm install express?
+npm install --save-dev nodemon
+npm install cors?
+npm install http-proxy-middleware?
+
+# Play youtube
+npm i ffmpeg-static
+
+npm i discord-player
+npm i discord-api-types
+npm i @discordjs/voice
+npm i @discordjs/rest
+npm i @discordjs/builders
+npm install @discord-player/extractor
+
+npm install ytdl-core
+npm install discordjs/opus
+
+# distube
+npm install distube
+npm install sodium-native
+
+# react
+npm install react-router-dom
+
+npm install -g json-server
+json-server --watch ./src/db/data.json --port 3001
+
+npm install typescript @types/node @types/react @types/react-dom @types/jest @types/react-router-dom
+
+npm install --save 
+npm install concurrently --save
+
+npm install axios

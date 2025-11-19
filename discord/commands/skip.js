@@ -8,23 +8,40 @@ module.exports = {
   cooldown: 1,
   execute: async (message) => {
     const player = useMainPlayer();
-    const guildQueue = player.nodes.get(message.guild);
 
-    if (!guildQueue) {
-      await message.reply("There is no song playing.");
-      return;
+    let channel;
+    try {
+      channel = player.nodes.get(message.guild).channel;
+    } catch {
+      return message.reply({
+        embeds: [
+          new EmbedBuilder()
+            .setColor("Red")
+            .setDescription("You must be in channel."),
+        ],
+        ephemeral: true,
+      });
     }
 
-    const currentSong = guildQueue.currentTrack;
+    const queue = player.client.distube.getQueue(channel);
+    if (!queue) {
+      return message.reply({
+        embeds: [
+          new EmbedBuilder().setColor("Red").setDescription("No active queue."),
+        ],
+        ephemeral: true,
+      });
+    }
 
-    guildQueue.node.skip();
+    await queue.skip(channel);
+    const currentSong = queue.songs[0];
 
     await message.reply({
       embeds: [
         new EmbedBuilder()
-          .setDescription(`Skipped **${currentSong.title}**`)
+          .setDescription(`Skipped **${currentSong.name}**`)
           .setThumbnail(currentSong.thumbnail)
-          .setFooter({ text: `Duration: ${currentSong.duration}` }),
+          .setFooter({ text: `Duration: ${currentSong.formattedDuration}` }),
       ],
     });
   },

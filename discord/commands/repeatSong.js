@@ -3,8 +3,8 @@ const { EmbedBuilder } = require("discord.js");
 
 module.exports = {
   name: "repeat",
-  aliases: ["rp"],
-  description: "Repeat queue or not",
+  aliases: ["rps"],
+  description: "Repeat current song or not",
   cooldown: 1,
   execute: async (message) => {
     const player = useMainPlayer();
@@ -24,21 +24,21 @@ module.exports = {
 
     const queue = player.client.distube.getQueue(channel);
 
-    if (queue.repeatMode === 2) {
+    if (queue.repeatMode === 1) {
       await player.client.distube.setRepeatMode(message, 0);
       return message.reply({
         embeds: [
           new EmbedBuilder().setColor("Blue").setDescription(
-            `**The queue is not repeated`
+            `**The song is not repeated`
           ),
         ],
       });
     } else {
-      await player.client.distube.setRepeatMode(message, 2);
+      await player.client.distube.setRepeatMode(message, 1);
       return message.reply({
         embeds: [
           new EmbedBuilder().setColor("Blue").setDescription(
-            `**The queue is repeated`
+            `**The song is repeated`
           ),
         ],
       });

@@ -3,20 +3,50 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@discord-player/extractor": "^4.4.7",
+    "@discordjs/builders": "^1.8.2",
+    "@discordjs/opus": "github:discordjs/opus",
+    "@discordjs/rest": "^2.3.0",
+    "@discordjs/voice": "^0.17.0",
+    "@distube/yt-dlp": "^2.0.1",
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
+    "@types/jest": "^29.5.12",
+    "@types/node": "^20.14.9",
+    "@types/react": "^18.3.3",
+    "@types/react-dom": "^18.3.0",
+    "@types/react-router-dom": "^5.3.3",
+    "axios": "^1.7.2",
+    "concurrently": "^8.2.2",
+    "cors": "^2.8.5",
+    "discord-api-types": "^0.37.91",
+    "discord-player": "^6.6.10",
+    "discord.js": "^14.15.3",
+    "distube": "^5.0.2",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "ffmpeg-static": "^5.2.0",
+    "http-proxy-middleware": "^3.0.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
+    "react-router-dom": "^6.24.0",
     "react-scripts": "5.0.1",
-    "web-vitals": "^2.1.4"
+    "sodium-native": "^4.1.1",
+    "typescript": "^5.5.2",
+    "web-vitals": "^2.1.4",
+    "ytdl-core": "^4.11.5"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "discord": "nodemon discord/index.js",
+    "server": "nodemon server.js",
+    "dev": "concurrently \"npm run start\" \"npm run server\""
   },
+  "proxy": "http://localhost:8080/",
   "eslintConfig": {
     "extends": [
       "react-app",
@@ -34,5 +64,13 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "description": "This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).",
+  "main": "index.js",
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "nodemon": "^3.1.4"
   }
 }

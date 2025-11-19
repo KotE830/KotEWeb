@@ -8,31 +8,47 @@ module.exports = {
   cooldown: 1,
   execute: async (message) => {
     const player = useMainPlayer();
-    const guildQueue = player.nodes.get(message.guild);
 
-    if (!guildQueue || !guildQueue.isPlaying()) {
-      await message.reply("There is no song playing.");
-      return;
+    let channel;
+    try {
+      channel = player.nodes.get(message.guild).channel;
+    } catch {
+      return message.reply({
+        embeds: [
+          new EmbedBuilder()
+            .setColor("Red")
+            .setDescription("You must be in channel."),
+        ],
+        ephemeral: true,
+      });
     }
 
-    const queueString = guildQueue.tracks
-      .toArray()
-      .slice(0, 10)
-      .map((song, i) => {
-        return `${i + 1})  [${song.duration}]\` ${song.title}`;
-      })
-      .join("\n");
+    const queue = player.client.distube.getQueue(channel);
+    if (!queue) {
+      return message.reply({
+        embeds: [
+          new EmbedBuilder().setColor("Red").setDescription("No active queue."),
+        ],
+        ephemeral: true,
+      });
+    }
 
-    const currentSong = guildQueue.currentTrack;
+    const currentSong = queue.songs[0];
+    const songs = queue.songs.slice(1);
 
     await message.reply({
       embeds: [
         new EmbedBuilder()
+          .setColor("Blue")
           .setDescription(
-            `**Currently Playing:**\n\` ${currentSong.title}\n\n**Queue:**\n${queueString}`
+            `**Currently Playing:**\n ${currentSong.name}\n\n**Queue:**\n
+          ${songs.map(
+            (song, id) =>
+              `\n**${id + 1}.** ${song.name} - \`${song.formattedDuration}\``
+          )}`
           )
           .setThumbnail(currentSong.thumbnail)
-          .setFooter({ text: `Duration: ${song.duration}` }),
+          .setFooter({ text: `Duration: ${currentSong.formattedDuration}` }),
       ],
     });
   },

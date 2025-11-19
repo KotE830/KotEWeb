@@ -25,7 +25,12 @@ const cooldowns = new Collection();
 module.exports = {
   name: Events.MessageCreate,
   execute(msg) {
-    if (!msg.content.startsWith(prefix) || msg.author.bot) return;
+    if (
+      !msg.content.startsWith(prefix) ||
+      (msg.author.bot && msg.author.id != process.env.WEBHOOK_ID)
+    )
+      return;
+
     const args = msg.content.slice(prefix.length).trim().split(/ +/);
     const commandName = args.shift();
     const command = commands.get(commandName);
