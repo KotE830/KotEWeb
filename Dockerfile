@@ -14,7 +14,7 @@ COPY tsconfig*.json ./
 COPY tsconfig.server.json ./
 
 # Install all dependencies (including devDependencies for building)
-RUN npm ci
+RUN npm ci --legacy-peer-deps
 
 # Copy source files
 COPY server.ts ./
