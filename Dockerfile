@@ -29,7 +29,8 @@ COPY database ./database
 COPY shared ./shared
 COPY prisma ./prisma
 
-# Generate Prisma Client
+# Generate Prisma Client (using temporary env vars for build)
+RUN POSTGRES_USER=temp POSTGRES_PASSWORD=temp POSTGRES_DB=temp DATABASE_URL=postgresql://temp:temp@localhost:5432/temp 
 RUN npx prisma generate
 
 # Expose port
