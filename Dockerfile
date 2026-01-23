@@ -16,6 +16,7 @@ WORKDIR /app
 COPY package*.json ./
 COPY tsconfig*.json ./
 COPY tsconfig.server.json ./
+COPY scripts ./scripts
 
 # Install all dependencies (including devDependencies for building)
 RUN npm install --legacy-peer-deps
