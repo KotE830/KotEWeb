@@ -21,11 +21,13 @@ jobs:
           host: ${{ secrets.RASPBERRY_PI_HOST }}
           username: ${{ secrets.RASPBERRY_PI_USER }}
           key: ${{ secrets.RASPBERRY_PI_SSH_KEY }}
+          timeout: 60s
+          command_timeout: 30m
           script: |
             cd ~/KotEWeb
             git pull origin master
             docker compose down
-            docker compose build
+            docker compose build --no-cache
             docker compose up -d
             docker compose exec backend npx prisma migrate deploy || true
 
