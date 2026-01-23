@@ -1,0 +1,14 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "noEmit": false,
+    "outDir": "./dist"
+  },
+  "include": ["server.ts", "discord/**/*.ts", "database/**/*.ts", "shared/**/*.ts"],
+  "exclude": ["node_modules", "app", "components", "hooks"]
+}
+

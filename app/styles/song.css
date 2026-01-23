@@ -1,0 +1,163 @@
+.list_song {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding: 0;
+  list-style: none;
+  margin: 0;
+}
+
+.song-item {
+  width: 100%;
+}
+
+.song-card {
+  display: flex;
+  flex-direction: column;
+  background: #2a2a2a;
+  border-radius: 12px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+  cursor: pointer;
+}
+
+.song-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+  border-color: #4a9eff;
+}
+
+.song-card.in-queue {
+  border-color: #4caf50;
+  background: #2a3a2a;
+}
+
+.song-content {
+  padding: 15px;
+  display: flex;
+  gap: 15px;
+  align-items: flex-start;
+}
+
+.thumbnail {
+  width: 120px;
+  height: 90px;
+  object-fit: cover;
+  border-radius: 8px;
+  flex-shrink: 0;
+}
+
+.song-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.song-info h3 {
+  margin: 0;
+  font-size: 18px;
+  color: #fff;
+  font-weight: 600;
+}
+
+.song-info p {
+  margin: 0;
+  font-size: 14px;
+  color: #aaa;
+}
+
+.queue-badge {
+  display: inline-block;
+  padding: 4px 8px;
+  background: #4caf50;
+  color: #fff;
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: bold;
+  margin-top: 4px;
+}
+
+.song-actions {
+  display: flex;
+  gap: 8px;
+  padding: 12px 15px;
+  background: #1a1a1a;
+  border-top: 1px solid #333;
+}
+
+.btn-link,
+.btn-edit,
+.btn-delete {
+  flex: 1;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-decoration: none;
+  text-align: center;
+  display: inline-block;
+}
+
+.btn-link {
+  background: #2196f3 !important;
+  color: #fff !important;
+}
+
+.btn-link:hover {
+  background: #1976d2 !important;
+  transform: scale(1.05);
+}
+
+.btn-edit {
+  background: #ff9800 !important;
+  color: #fff !important;
+}
+
+.btn-edit:hover {
+  background: #f57c00 !important;
+  transform: scale(1.05);
+}
+
+.btn-delete {
+  background: #f44336 !important;
+  color: #fff !important;
+}
+
+.btn-delete:hover {
+  background: #d32f2f !important;
+  transform: scale(1.05);
+}
+
+.song-card.play {
+  border-color: #ff9800;
+}
+
+.queue {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.queue-item {
+  padding: 12px 15px;
+  background-color: #1a1a1a;
+  border-radius: 6px;
+  border: 1px solid #333;
+  transition: all 0.2s ease;
+}
+
+.queue-item:hover {
+  background-color: #222;
+  border-color: #444;
+  transform: translateX(4px);
+}
+
+

@@ -9,6 +9,8 @@
     "@discordjs/rest": "^2.3.0",
     "@discordjs/voice": "^0.17.0",
     "@distube/yt-dlp": "^2.0.1",
+    "@prisma/client": "^7.3.0",
+    "@prisma/config": "^7.3.0",
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
@@ -19,6 +21,7 @@
     "@types/react-router-dom": "^5.3.3",
     "axios": "^1.7.2",
     "concurrently": "^8.2.2",
+    "cookie-parser": "^1.4.7",
     "cors": "^2.8.5",
     "discord-api-types": "^0.37.91",
     "discord-player": "^6.6.10",
@@ -26,27 +29,37 @@
     "distube": "^5.0.2",
     "dotenv": "^16.4.5",
     "express": "^4.19.2",
+    "express-session": "^1.18.2",
     "ffmpeg-static": "^5.2.0",
     "http-proxy-middleware": "^3.0.0",
+    "next": "^16.1.2",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-router-dom": "^6.24.0",
     "react-scripts": "5.0.1",
+    "shoukaku": "^4.2.0",
     "sodium-native": "^4.1.1",
     "typescript": "^5.5.2",
     "web-vitals": "^2.1.4",
     "ytdl-core": "^4.11.5"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "discord": "nodemon discord/index.js",
-    "server": "nodemon server.js",
-    "dev": "concurrently \"npm run start\" \"npm run server\""
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "discord": "nodemon discord/index.ts",
+    "server": "nodemon --exec tsx --tsconfig tsconfig.server.json server.ts",
+    "server:prod": "tsx --tsconfig tsconfig.server.json server.ts",
+    "dev:full": "concurrently -n \"NEXT,SERVER,OPEN\" -c \"blue,green,yellow\" \"npm run dev\" \"npm run server\" \"wait-on http://localhost:3000 && open-cli http://localhost:3000\"",
+    "lavalink": "cd discord/lavalink && ./start-lavalink.sh",
+    "lavalink:win": "cd discord\\lavalink && start-lavalink.bat",
+    "prisma": "prisma studio --port 5555",
+    "docker:build": "docker-compose build",
+    "docker:up": "docker-compose up -d",
+    "docker:down": "docker-compose down",
+    "docker:logs": "docker-compose logs -f"
   },
-  "proxy": "http://localhost:8080/",
   "eslintConfig": {
     "extends": [
       "react-app",
@@ -71,6 +84,14 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "nodemon": "^3.1.4"
+    "@types/cookie-parser": "^1.4.10",
+    "@types/cors": "^2.8.19",
+    "@types/express-session": "^1.18.2",
+    "nodemon": "^3.1.4",
+    "open-cli": "^8.0.0",
+    "prisma": "^7.3.0",
+    "ts-node": "^10.9.2",
+    "tsx": "^4.21.0",
+    "wait-on": "^9.0.3"
   }
 }

@@ -1,0 +1,287 @@
+html {
+  overflow-y: auto;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+}
+
+html::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-size: 20px;
+  background-color: #121212;
+  color: #e0e0e0;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+ol,
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+
+a {
+  text-decoration: none;
+  color: #e0e0e0;
+}
+
+.App {
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 20px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.main-content {
+  flex: 1;
+  overflow-y: auto;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+}
+
+.main-content::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+}
+
+.header {
+  position: relative;
+  /* Ensure header (and its dropdowns) always renders above page content */
+  z-index: 2000;
+  isolation: isolate;
+  background-color: #1e1e1e;
+  padding: 20px;
+  border-bottom: 1px solid #333;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  width: 100%;
+  box-sizing: border-box;
+  flex-shrink: 0;
+}
+
+.header .menu {
+  display: flex;
+  align-items: center;
+}
+
+.header h1 {
+  color: #e0e0e0;
+  margin: 0;
+  font-size: 36px;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.header h1 a {
+  color: #e0e0e0;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.header h1 a:hover {
+  color: #ffffff;
+}
+
+.header .link {
+  padding: 10px 20px;
+  margin-left: 12px;
+  background: linear-gradient(135deg, #2a2a3e 0%, #252538 100%);
+  color: #a0c4ff;
+  font-weight: 600;
+  font-size: 17px;
+  border-radius: 8px;
+  border: 1px solid #4a5568;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  display: inline-block;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.header .link:hover {
+  background: linear-gradient(135deg, #35354a 0%, #2f2f44 100%);
+  border-color: #6b8dd6;
+  color: #c5d8ff;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(107, 141, 214, 0.3);
+}
+
+.btn_del {
+  margin-left: 10px;
+  color: #fff;
+  background-color: firebrick;
+}
+
+/* Default button style - restored to previous style */
+button {
+  padding: 10px 20px;
+  font-weight: bold;
+  font-size: 18px;
+  cursor: pointer;
+  border: 0 none;
+  border-radius: 6px;
+  color: #fff !important;
+  background-color: #4a9eff !important;
+  transition: background-color 0.2s;
+}
+
+button:hover {
+  background-color: #3a8eef !important;
+}
+
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Style for Search, Add Song, Add Tag buttons */
+.btn-primary {
+  padding: 12px 24px;
+  font-weight: 600;
+  font-size: 16px;
+  cursor: pointer;
+  border: none;
+  border-radius: 6px;
+  color: #fff;
+  background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 8px rgba(99, 102, 241, 0.3);
+}
+
+.btn-primary:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(99, 102, 241, 0.4);
+  background: linear-gradient(135deg, #818cf8 0%, #6366f1 100%);
+}
+
+.btn-primary:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 6px rgba(99, 102, 241, 0.3);
+}
+
+.input_area {
+  margin-bottom: 10px;
+}
+
+.input_area label {
+  display: block;
+  margin-bottom: 10px;
+  color: #e0e0e0;
+}
+
+.input_area input {
+  width: 100%;
+  max-width: 400px;
+  height: 40px;
+  font-size: 20px;
+  padding: 0 10px;
+  background-color: #2a2a2a;
+  color: #e0e0e0;
+  border: 1px solid #444;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.input_area input:focus {
+  outline: none;
+  border-color: #5a9;
+  background-color: #333;
+}
+
+.input_area input::placeholder {
+  color: #888;
+}
+
+.play {
+  background-color: aquamarine;
+}
+
+form {
+  padding: 20px;
+  background-color: #1a1a1a;
+  border-radius: 8px;
+  margin-top: 20px;
+}
+
+/* Bot Status Indicator animation */
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.7;
+    transform: scale(1.1);
+  }
+}
+
+.status-indicator-online {
+  animation: pulse 2s ease-in-out infinite;
+}
+
+/* Tag card hover effect */
+.tag-card {
+  transition: all 0.3s ease;
+}
+
+.tag-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+  border-color: #4a9eff !important;
+}
+
+/* Language dropdown styles */
+.language-option {
+  width: 100% !important;
+  text-align: left !important;
+  padding: 10px 12px !important;
+  border: none !important;
+  cursor: pointer !important;
+  font-size: 14px !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 10px !important;
+  transition: background-color 0.2s ease !important;
+}
+
+.language-option[data-active="true"] {
+  background-color: #2a2a3e !important;
+  color: #ffffff !important;
+  font-weight: 700 !important;
+}
+
+.language-option[data-active="false"] {
+  background-color: transparent !important;
+  color: #c5d8ff !important;
+  font-weight: 600 !important;
+}
+
+.language-option[data-active="true"]:hover {
+  background-color: #35354a !important;
+}
+
+.language-option[data-active="false"]:hover {
+  background-color: rgba(197, 216, 255, 0.08) !important;
+}
+
+

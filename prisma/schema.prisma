@@ -1,0 +1,51 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum TrackSource {
+  youtube
+  soundcloud
+  spotify
+  other
+}
+
+model Player {
+  guildId      String   @id @unique
+  currentTrack Json?
+  queue        Json
+  isRepeating  Boolean  @default(false)
+  updatedAt    DateTime @updatedAt
+
+  @@map("players")
+}
+
+model Track {
+  id        String   @id @default(uuid())
+  title     String
+  artist    String
+  length    Int
+  uri       String   @unique
+  source    TrackSource
+  sourceId  String
+  userId    String?
+  createdAt DateTime @default(now())
+  tags      Tag[]    @relation("TagToTrack")
+
+  @@index([title, artist])
+  @@index([userId])
+  @@unique([source, sourceId])
+  @@map("tracks")
+}
+
+model Tag {
+  id        String   @id @default(uuid())
+  name      String   @unique
+  createdAt DateTime @default(now())
+  tracks    Track[]  @relation("TagToTrack")
+
+  @@map("tags")
+}

@@ -1,0 +1,15 @@
+{
+  "verbose": true,
+  "ignore": [
+    "*.test.js",
+    "fixtures/*",
+    "*.json",
+    "*.log",
+    "*.txt",
+    "data/*",
+    "database/*",
+    "sessions/*",
+    "discord/lavalink/*"
+  ],
+  "ext": "js,mjs,cjs,json,ts"
+}

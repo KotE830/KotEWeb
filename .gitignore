@@ -24,7 +24,30 @@ yarn-error.log*
 
 
 .vscode
+.cursor/
+.cursorignore
 
 /src/db/dummy.json
 /*.env
 note.txt
+
+# Next.js
+.next
+out
+
+# Build outputs
+build
+dist
+
+# Lavalink
+discord/lavalink/logs/
+discord/lavalink/Lavalink.jar
+discord/lavalink/plugins/*.jar
+
+# Temporary files
+commands.txt
+*.tmp
+*.temp
+
+# Private folder
+/private
