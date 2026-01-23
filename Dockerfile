@@ -23,6 +23,7 @@ RUN npm install --legacy-peer-deps
 
 # Copy source files
 COPY server.ts ./
+COPY prisma.config.ts ./
 COPY discord ./discord
 COPY database ./database
 COPY shared ./shared
