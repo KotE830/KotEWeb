@@ -36,7 +36,6 @@
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-router-dom": "^6.24.0",
-    "react-scripts": "5.0.1",
     "shoukaku": "^4.2.0",
     "sodium-native": "^4.1.1",
     "typescript": "^5.5.2",
@@ -59,12 +58,6 @@
     "docker:up": "docker-compose up -d",
     "docker:down": "docker-compose down",
     "docker:logs": "docker-compose logs -f"
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
   },
   "browserslist": {
     "production": [
