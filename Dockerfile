@@ -1,9 +1,13 @@
 # Backend Dockerfile for Raspberry Pi
 FROM node:20-slim
 
-# Install Java for Lavalink (if needed, but Lavalink runs in separate container)
+# Install build tools and dependencies for native modules
 RUN apt-get update && apt-get install -y \
     ffmpeg \
+    build-essential \
+    python3 \
+    make \
+    g++ \
     && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /app
