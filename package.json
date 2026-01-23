@@ -43,7 +43,7 @@
     "ytdl-core": "^4.11.5"
   },
   "scripts": {
-    "postinstall": "prisma generate",
+    "postinstall": "node scripts/postinstall.js",
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
