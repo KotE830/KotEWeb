@@ -62,7 +62,8 @@ export default function Tag({ tag: t }: IProps) {
       for (const song of tagSongs) {
         try {
           const params = new URLSearchParams();
-          params.append("song", song.uri || song.title || song.song);
+          const songParam = song.uri || song.title || song.song || "";
+          params.append("song", songParam);
           const response = await axios.post("/api/songs/addqueue", null, { params });
           
           if (response.data.success) {

@@ -70,12 +70,13 @@ export default function Song({ song: s, onSongClick }: IProps) {
     try {
       if (isInQueue) {
         const params = new URLSearchParams();
-        params.append("url", song.uri);
+        params.append("url", song.uri || "");
         await axios.post("/api/songs/removequeue", null, { params });
         setIsInQueue(false);
       } else {
         const params = new URLSearchParams();
-        params.append("song", song.uri || song.title || song.song);
+        const songParam = song.uri || song.title || song.song || "";
+        params.append("song", songParam);
         const response = await axios.post("/api/songs/addqueue", null, { params });
 
         if (response.data.success) {
