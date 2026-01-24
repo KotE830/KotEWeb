@@ -19,7 +19,7 @@ COPY tsconfig.server.json ./
 COPY scripts ./scripts
 
 # Install all dependencies (including devDependencies for building)
-RUN npm install --legacy-peer-deps && npm cache clean --force
+RUN npm install --legacy-peer-deps && npm cache clean --force && rm -rf /root/.npm
 
 # Copy source files
 COPY server.ts ./
