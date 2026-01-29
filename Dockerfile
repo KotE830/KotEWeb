@@ -18,6 +18,9 @@ COPY tsconfig*.json ./
 COPY tsconfig.server.json ./
 COPY scripts ./scripts
 
+# Copy 'prisma' folder before 'npm install'
+COPY prisma ./prisma
+
 # Install all dependencies (including devDependencies for building)
 RUN npm install --legacy-peer-deps && npm cache clean --force && rm -rf /root/.npm
 
@@ -26,7 +29,6 @@ COPY server.ts ./
 COPY discord ./discord
 COPY database ./database
 COPY shared ./shared
-COPY prisma ./prisma
 
 # Generate Prisma Client (using temporary env vars for build)
 RUN POSTGRES_USER=temp POSTGRES_PASSWORD=temp POSTGRES_DB=temp DATABASE_URL=postgresql://temp:temp@localhost:5432/temp npx prisma generate
