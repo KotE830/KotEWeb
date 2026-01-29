@@ -14,7 +14,7 @@ services:
       - .env
     volumes:
       - ./discord/lavalink:/app/discord/lavalink
-      - ./prisma:/app/prisma
+    #  - ./prisma:/app/prisma
     depends_on:
       - postgres
       - lavalink
