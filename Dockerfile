@@ -31,8 +31,8 @@ COPY discord ./discord
 COPY database ./database
 COPY shared ./shared
 
-# Generate Prisma Client (Prisma 7: prisma.config.ts + DATABASE_URL for build)
-RUN DATABASE_URL=postgresql://temp:temp@localhost:5432/temp npx prisma generate
+# Generate Prisma Client (library engine; prisma.config.ts + DATABASE_URL for build)
+RUN PRISMA_CLIENT_ENGINE_TYPE=library DATABASE_URL=postgresql://temp:temp@localhost:5432/temp npx prisma generate
 
 # Expose port
 EXPOSE 8080
