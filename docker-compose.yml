@@ -9,7 +9,6 @@ services:
       - NODE_ENV=production
       - PORT=8080
       - DATABASE_URL=postgresql://${POSTGRES_USER:-koteweb}:${POSTGRES_PASSWORD}@postgres:5432/${POSTGRES_DB:-koteweb}?schema=public
-      - PRISMA_CLIENT_ENGINE_TYPE=library
     env_file:
       - .env
     volumes:

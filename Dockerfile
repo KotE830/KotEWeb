@@ -26,12 +26,13 @@ RUN npm install --legacy-peer-deps && npm cache clean --force && rm -rf /root/.n
 
 # Copy source files
 COPY server.ts ./
+COPY prisma.config.ts ./
 COPY discord ./discord
 COPY database ./database
 COPY shared ./shared
 
-# Generate Prisma Client (library engine; temporary env vars for build)
-RUN PRISMA_CLIENT_ENGINE_TYPE=library DATABASE_URL=postgresql://temp:temp@localhost:5432/temp npx prisma generate
+# Generate Prisma Client (Prisma 7: prisma.config.ts + DATABASE_URL for build)
+RUN DATABASE_URL=postgresql://temp:temp@localhost:5432/temp npx prisma generate
 
 # Expose port
 EXPOSE 8080
