@@ -1,27 +1,37 @@
 import { Request, Response } from "express";
 import crypto from "crypto";
 
+/** OAuth2 콜백 URL. Next.js rewrites로 /api가 백엔드로 가므로, 사용자 브라우저가 도착하는 주소(프론트 도메인) + /api/auth/callback 이어야 함. */
+function getRedirectUri(): string {
+  if (process.env.DISCORD_REDIRECT_URI) {
+    return process.env.DISCORD_REDIRECT_URI;
+  }
+
+  const base = process.env.NEXT_PUBLIC_FRONTEND_URL;
+  if (base) {
+    return base.replace(/\/$/, '') + '/api/auth/callback';
+  }
+
+  return process.env.NODE_ENV === 'production'
+    ? 'https://koteweb.vercel.app/api/auth/callback'
+    : 'http://localhost:3000/api/auth/callback';
+}
+
 /**
  * Start Discord OAuth2 login
- * 
+ *
  * @param req - Express request
  * @param res - Express response
  */
 export function login(req: Request, res: Response): void {
   try {
-    // CLIENT_ID는 env에서 가져오기
     const clientId = process.env.DISCORD_CLIENT_ID;
     if (!clientId) {
       res.status(500).json({ error: "DISCORD_CLIENT_ID not configured in environment variables" });
       return;
     }
 
-    // 콜백 URL 설정
-    // Next.js rewrites를 통해 /api가 백엔드로 프록시되므로 프론트엔드 URL 사용
-    const redirectUri = process.env.DISCORD_REDIRECT_URI || 
-      (process.env.NODE_ENV === 'production' 
-        ? 'https://yourdomain.com/api/auth/callback'
-        : 'http://localhost:3000/api/auth/callback');
+    const redirectUri = getRedirectUri();
     
     const scopes = 'identify guilds';
     
@@ -70,10 +80,7 @@ export async function callback(req: Request, res: Response): Promise<void> {
     // CLIENT_ID와 CLIENT_SECRET은 env에서 가져오기
     const clientId = process.env.DISCORD_CLIENT_ID;
     const clientSecret = process.env.DISCORD_CLIENT_SECRET;
-    const redirectUri = process.env.DISCORD_REDIRECT_URI || 
-      (process.env.NODE_ENV === 'production' 
-        ? 'https://yourdomain.com/api/auth/callback'
-        : 'http://localhost:3000/api/auth/callback');
+    const redirectUri = getRedirectUri();
     
     if (!clientId || !clientSecret) {
       res.status(500).json({ error: "DISCORD_CLIENT_ID or DISCORD_CLIENT_SECRET not configured in environment variables" });
@@ -129,7 +136,7 @@ export async function callback(req: Request, res: Response): Promise<void> {
     // 로그인 성공 시 main 페이지로 리다이렉트
     const frontendUrl = process.env.NEXT_PUBLIC_FRONTEND_URL || 
       (process.env.NODE_ENV === 'production' 
-        ? 'https://yourdomain.com'
+        ? 'https://koteweb.vercel.app'
         : 'http://localhost:3000');
     res.redirect(`${frontendUrl}/main`);
   } catch (error) {
