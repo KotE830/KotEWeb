@@ -28,7 +28,7 @@ yarn-error.log*
 .cursorignore
 
 /src/db/dummy.json
-/*.env
+/*.env*
 note.txt
 
 # Next.js
