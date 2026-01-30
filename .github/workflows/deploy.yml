@@ -27,7 +27,7 @@ jobs:
         run: |
           # 기존 컨테이너 내리고 정리 (용량 확보)
           docker compose down
-          docker system prune -f
+          docker system prune -a -f
           docker image prune -f
           
           # 캐시 없이 다시 빌드 (최신 코드 반영)
