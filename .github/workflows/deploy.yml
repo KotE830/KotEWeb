@@ -5,32 +5,41 @@ on:
     branches:
       - main
       - master
-  workflow_dispatch:  # Manual trigger enabled
+  workflow_dispatch:
 
 jobs:
   deploy:
-    runs-on: self-hosted
+    runs-on: self-hosted  # 라즈베리파이에서 직접 실행
     
     steps:
+      # 1. 깃허브에서 최신 코드를 현재 러너 폴더로 가져옴
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Deploy to Raspberry Pi
-        uses: appleboy/ssh-action@v1.0.0
-        with:
-          host: ${{ secrets.RASPBERRY_PI_HOST }}
-          username: ${{ secrets.RASPBERRY_PI_USER }}
-          key: ${{ secrets.RASPBERRY_PI_SSH_KEY }}
-          timeout: 60s
-          command_timeout: 30m
-          script: |
-            cd ~/KotEWeb
-            git pull origin master
-            docker compose down
-            # Clean up Docker to free disk space
-            docker system prune -f
-            docker image prune -f
-            docker compose build --no-cache
-            docker compose up -d
-            docker compose exec backend sh -c "npx prisma migrate deploy" || echo "Migration skipped"
+      # 2. .env 파일 생성
+      - name: Create .env file
+        run: |
+          echo "DATABASE_URL=${{ secrets.DATABASE_URL }}" > .env
+          echo "DISCORD_TOKEN=${{ secrets.DISCORD_TOKEN }}" >> .env
+          echo "DISCORD_CLIENT_ID=${{ secrets.DISCORD_CLIENT_ID }}" >> .env
+          echo "DISCORD_CLIENT_SECRET=${{ secrets.DISCORD_CLIENT_SECRET }}" >> .env
+          echo "DISCORD_REDIRECT_URI=${{ secrets.DISCORD_REDIRECT_URI }}" >> .env
+          echo "NEXT_PUBLIC_FRONTEND_URL=${{ secrets.NEXT_PUBLIC_FRONTEND_URL }}" >> .env
+          
 
+      # 3. 도커 배포 명령 실행 (SSH 접속 없이 바로 명령어 입력)
+      - name: Deploy with Docker Compose
+        run: |
+          # 기존 컨테이너 내리고 정리 (용량 확보)
+          docker compose down
+          docker system prune -f
+          docker image prune -f
+          
+          # 캐시 없이 다시 빌드 (최신 코드 반영)
+          docker compose build --no-cache backend
+          
+          # 백그라운드 실행
+          docker compose up -d backend
+          
+          # 프리즈마 마이그레이션 (DB 업데이트)
+          docker compose exec -T backend npx prisma migrate deploy || echo "Migration skipped"
