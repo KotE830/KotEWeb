@@ -140,13 +140,13 @@ for (const file of eventFiles) {
 }
 
 // Bot will be started manually via /api/boton endpoint
-if (process.env.TOKEN) {
+if (process.env.DISCORD_TOKEN) {
   console.log(
     "ℹ️  Discord bot is ready. Use /api/boton to start the bot manually."
   );
 } else {
   console.log(
-    "⚠️  Discord TOKEN not found. Server will run without Discord bot."
+    "⚠️  Discord DISCORD_TOKEN not found. Server will run without Discord bot."
   );
 }
 

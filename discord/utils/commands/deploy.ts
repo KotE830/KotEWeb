@@ -9,11 +9,11 @@ import { getCommandData } from './command';
  * @param client - Discord client instance
  */
 export async function deployCommands(client: Client): Promise<void> {
-  const token = process.env.TOKEN;
+  const token = process.env.DISCORD_TOKEN;
   const clientId = client.user?.id;
 
   if (!token) {
-    console.error('❌ TOKEN not set');
+    console.error('❌ DISCORD_TOKEN not set');
     return;
   }
 

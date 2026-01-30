@@ -44,8 +44,8 @@ function isBotOn(req: Request, res: Response): void {
  */
 async function botOn(req: Request, res: Response): Promise<void> {
   try {
-    if (!process.env.TOKEN) {
-      res.status(500).send("Discord TOKEN not configured");
+    if (!process.env.DISCORD_TOKEN) {
+      res.status(500).send("Discord DISCORD_TOKEN not configured");
       return;
     }
 
@@ -57,7 +57,7 @@ async function botOn(req: Request, res: Response): Promise<void> {
     // 클라이언트가 준비되지 않은 경우 로그인
     if (!client.isReady()) {
       client
-        .login(process.env.TOKEN)
+        .login(process.env.DISCORD_TOKEN)
         .then(() => {
           console.log("✓ Discord bot logged in successfully");
           res.send("On");
