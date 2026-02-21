@@ -2,7 +2,7 @@ services:
   backend:
     build: .
     container_name: koteweb-backend
-    restart: unless-stopped
+    restart: always
     ports:
       - "8080:8080"
     environment:
@@ -26,7 +26,7 @@ services:
   postgres:
     image: postgres:15-alpine
     container_name: koteweb-postgres
-    restart: unless-stopped
+    restart: always
     environment:
       POSTGRES_USER: ${POSTGRES_USER:-koteweb}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
@@ -39,7 +39,7 @@ services:
   lavalink:
     image: ghcr.io/lavalink-devs/lavalink:latest
     container_name: koteweb-lavalink
-    restart: unless-stopped
+    restart: always
     ports:
       - "2333:2333"
     environment:
