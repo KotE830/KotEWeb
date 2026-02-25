@@ -1,4 +1,4 @@
-name: Deploy to Raspberry Pi
+name: Deploy to AWS
 
 on:
   push:
@@ -9,7 +9,7 @@ on:
 
 jobs:
   deploy:
-    runs-on: self-hosted  # 라즈베리파이에서 직접 실행
+    runs-on: self-hosted  # AWS에서 직접 실행
     
     steps:
       # 1. 깃허브에서 최신 코드를 현재 러너 폴더로 가져옴
@@ -26,15 +26,15 @@ jobs:
       - name: Deploy with Docker Compose
         run: |
           # 기존 컨테이너 내리고 정리 (용량 확보)
-          docker compose down
+          docker-compose down
           docker system prune -a -f
           docker image prune -f
           
           # 캐시 없이 다시 빌드 (최신 코드 반영)
-          docker compose build --no-cache backend
+          docker-compose build --no-cache backend
           
           # 백그라운드 실행
-          docker compose up -d backend
+          docker-compose up -d backend
           
           # 프리즈마 마이그레이션 (DB 업데이트)
-          docker compose exec -T backend npx prisma migrate deploy || echo "Migration skipped"
+          docker-compose exec -T backend npx prisma migrate deploy || echo "Migration skipped"
